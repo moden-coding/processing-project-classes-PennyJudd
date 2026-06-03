@@ -20,7 +20,7 @@ public class Asteroids {
     }
 
     public void asteroidDisplay() {
-         canvas.stroke(255);
+        canvas.stroke(255);
 
         canvas.fill(0);
         canvas.circle(asteroidX, asteroidY, asteroidSize);
@@ -28,42 +28,49 @@ public class Asteroids {
     }
 
     public void asteroidMovement() {
-        
-       
-
-       
 
         movement = true;
-        if(asteroidX > 800){
+        if (asteroidX > 800) {
             asteroidX = 0;
         }
-          if(asteroidX < 0){
+        if (asteroidX < 0) {
             asteroidX = 800;
         }
-          if(asteroidY > 500){
+        if (asteroidY > 500) {
             asteroidY = 0;
         }
-          if(asteroidY < 0){
+        if (asteroidY < 0) {
             asteroidY = 500;
         }
-       
+
         if (movement == true) {
             asteroidX = asteroidX + xSpeed;
             asteroidY = asteroidY + ySpeed;
         }
 
     }
-    public void lives(){
+
+    public void lives(int life) {
         float shipx = 400;
         float shipy = 250;
-        int lives = 3;
-        // System.out.println(canvas.dist(asteroidX,asteroidY,shipx,shipy));
-         if(canvas.dist(asteroidX,asteroidY,shipx,shipy) < (10 + 25)){
-            lives--;
-             System.out.println(lives);
-           
-         }
+       
+        float dist = (canvas.dist(asteroidX, asteroidY, shipx, shipy));
+        if ((int) dist < 35) {
+            life = life -1;
+            asteroidSize = 0;
+            System.out.println(life);
+
+        }
         
+
+        // System.out.println(canvas.dist(asteroidX,asteroidY,shipx,shipy));
+        // if(canvas.dist(asteroidX,asteroidY,shipx,shipy) < (10 + 50)){
+
+        // lives--;
+        // System.out.println(lives);
+
+        // }
+
     }
 
 }

@@ -13,11 +13,20 @@ public class Bullets {
 
     }
     public void display(){
-        canvas.fill(255);
+        canvas.stroke(0);
+        canvas.fill(255,100,100);
         
-        canvas.rect(bulletX, bulletY, 20, 5);
+        canvas.circle(bulletX, bulletY, 10);
+       
+        bulletX = bulletX + (bulletX-400); 
+        bulletY = bulletY + (bulletY -250);
+        
+
        
     
+    }
+    public void move(){
+
     }
     
 }

@@ -14,6 +14,9 @@ public class App extends PApplet {
     int scene = 1;
     float shipx = 400;
     float shipY = 250;
+    int rotationSpeed = 5;
+    int lineSpeed = 3;
+    
 
     public static void main(String[] args) {
         PApplet.main("App");
@@ -34,126 +37,58 @@ public class App extends PApplet {
 
     }
 
-    public float degreesToRadian(float d) {
-        // System.out.println("d " + d);
-        System.out.println(d * (180 / 3.14f));
-        return d * (180 / 3.14f);
-    }
+   
 
     public void draw() {
        
+       
         if(scene == 2){
-            background(0);
+            background(255,0,0);
         }
         if(scene == 1){
         background(0);
+         ship();
        
         
         for (Asteroids b : asteroid) {
             
             b.asteroidDisplay();
             b.asteroidMovement();
-            b.lives();
+            b.lives(lives);
+           
+          if(lives < 1){
+            scene = 2;
+          }
+         
 
         }
         for (Bullets c : bullets) {
             c.display();
         }
+       
 
-        // ChatGPT
-        pushMatrix();
-
-        shipRotate();
-
-        popMatrix();
-    }
-
-    }
-
-    public void shipRotate() {
-        // chatGPTcode
-        // translate(width / 2, height / 2);
-
-        // // Rotate the ship
-        // rotate(shipAngle);
-
-        // Draw spaceship
-         fill(255);
-        stroke(0,0,255);
         
-        circle(400, 250, 50);
-
-        // Optional direction line so rotation is visible
-
-        stroke(0, 0, 255);
-
-        line(400, 250, linex, liney);
-
-        // circle(circlex,circley,20);
+    }
 
     }
+
 
     public void keyPressed() {
         // Rotate left
         if (keyCode == LEFT) {
-            // System.out.println("first " +cos((linex-400)/25));
-
-            float cos = (degreesToRadian(cos((linex - 400) / 25))) / 100;
-            float sin = (degreesToRadian(sin((liney - 250) / 25))) / 100;
-            System.out.println("first  " + sin);
-            if (sin < 0) {
-                sin = -sin + 250;
-            }
-            if (cos < 0) {
-                cos = -cos + 400;
-            }
-            System.out.println("cos: " + cos);
-            System.out.println("sin: " + sin);
-            // if(sin<=.4466260){
-            // liney = 250-(sin*50);
-
-            // }
-            // else if(sin>.4466260){
-            liney = 250 + (sin * 50);
-            // }
-            linex = 400 + (cos * 50);
-            System.out.println("x " + linex);
-
-            System.out.println("y: " + liney);
-            // System.out.println(linex);
-
-            // shipAngle = (float)(shipAngle - .5) %6;
-            // bulletAngle = (float)(bulletAngle - .5) %6;
+            shipAngle -= lineSpeed * rotationSpeed;
+           
         }
 
         // Rotate right
         if (keyCode == RIGHT) {
-            float cos = (degreesToRadian(cos((linex - 400) / 25))) / 100;
-            float sin = (degreesToRadian(sin((liney - 250) / 25))) / 100;
-            if (sin < 0) {
-                sin = -sin + 250;
-            }
-            if (cos < 0) {
-                cos = -cos + 400;
-            }
-            System.out.println("cos: " + cos);
-            System.out.println("sin: " + sin);
-
-            linex = (400 + (cos * 50));
-
-            if (sin >= .44653835) {
-                linex = liney + (cos * 50);
-
-                liney = 250 - (sin * 50);
-
-                System.out.println("y: " + liney);
-
-            }
+            shipAngle += lineSpeed * rotationSpeed;
+            
         }
         System.out.println("x " + linex);
 
         if (key == ' ') {
-            // bulletMaker();
+            bulletMaker();
             // circle(circlex + 450,circley + 250,20);
             // circlex++;
         }
@@ -166,12 +101,12 @@ public class App extends PApplet {
     }
 
     public void bulletMaker() {
-        rotate(bulletAngle);
+       
 
-        // float x = linex + 420;
-        // float y = liney + 250;
-        // Bullets laser = new Bullets(x, y, this);
-        // bullets.add(laser);
+        float x = linex + 400;
+        float y = liney + 250;
+        Bullets laser = new Bullets(x, y, this);
+        bullets.add(laser);
 
     }
 
@@ -207,5 +142,17 @@ public class App extends PApplet {
         
             
     //     }
+    public void ship(){
+        float angleInRadians = radians(shipAngle);
+        
+        linex = (25*cos(angleInRadians));
+        liney = (25*sin(angleInRadians));
+        Ship spaceShip = new Ship(angleInRadians,linex, liney, this);
+        spaceShip.shipmaker();
+
+
+    }
+    
+    
 
 }
