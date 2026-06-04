@@ -6,6 +6,7 @@ public class App extends PApplet {
     ArrayList<Bullets> bullets;
     ArrayList<Asteroids> asteroid;
 
+
     float linex = 420;
     float liney = 260;
     float ax;
@@ -16,7 +17,11 @@ public class App extends PApplet {
     float shipY = 250;
     int rotationSpeed = 5;
     int lineSpeed = 3;
-    
+    float Asteroidx;
+    float Asteroidy;
+    float bulletx;
+    float bullety;
+  
 
     public static void main(String[] args) {
         PApplet.main("App");
@@ -29,6 +34,7 @@ public class App extends PApplet {
     public void setup() {
         asteroid = new ArrayList<>();
         bullets = new ArrayList<>();
+
 
     }
 
@@ -48,7 +54,25 @@ public class App extends PApplet {
         if(scene == 1){
         background(0);
          ship();
+
        
+        if(AsteroidHit(Asteroidx, Asteroidx, bulletx, bullety) < 20){
+              for(Asteroids a :asteroid){
+         Asteroidx = a.getAsteroidX();
+         Asteroidy = a.getAsteroidY();
+        }
+        for (Bullets e:bullets){
+             bulletx = e.getBulletX();
+             bullety = e.getBulletY();
+
+        }
+            System.out.println(Asteroidx);
+
+            for(Asteroids z : asteroid){
+                z.dissapear();
+            }
+
+        }
         
         for (Asteroids b : asteroid) {
             
@@ -60,15 +84,28 @@ public class App extends PApplet {
             scene = 2;
           }
          
+         
+         
+         
 
         }
+
+        //  for (Asteroids z : asteroids){
+        //     z.asteroidHit(AsteroidX,AsteroidY,bulletX,bulletY);
+        //   if(asteroidHit = true){
+            
+        //     z.dissapear();
+        //   }
+        // }
         for (Bullets c : bullets) {
             c.display();
         }
+          
        
 
         
     }
+   
 
     }
 
@@ -82,10 +119,11 @@ public class App extends PApplet {
 
         // Rotate right
         if (keyCode == RIGHT) {
+            
             shipAngle += lineSpeed * rotationSpeed;
             
         }
-        System.out.println("x " + linex);
+        
 
         if (key == ' ') {
             bulletMaker();
@@ -152,6 +190,11 @@ public class App extends PApplet {
 
 
     }
+    public float AsteroidHit(float AsteroidX, float AsteroidY, float bulletX, float bulletY){
+        return dist(AsteroidX,AsteroidY,bulletX,bulletY);
+    }
+   
+    
     
     
 

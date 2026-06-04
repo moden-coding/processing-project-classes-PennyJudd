@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 
 public class Asteroids {
+    
     private float asteroidX;
     private float asteroidY;
     private int asteroidSize;
@@ -20,6 +23,7 @@ public class Asteroids {
     }
 
     public void asteroidDisplay() {
+        
         canvas.stroke(255);
 
         canvas.fill(0);
@@ -47,9 +51,17 @@ public class Asteroids {
             asteroidX = asteroidX + xSpeed;
             asteroidY = asteroidY + ySpeed;
         }
+        
+        
+      
 
     }
 
+    // public int getX(){
+
+    // }
+
+    
     public void lives(int life) {
         float shipx = 400;
         float shipy = 250;
@@ -62,6 +74,7 @@ public class Asteroids {
 
         }
         
+        
 
         // System.out.println(canvas.dist(asteroidX,asteroidY,shipx,shipy));
         // if(canvas.dist(asteroidX,asteroidY,shipx,shipy) < (10 + 50)){
@@ -70,7 +83,30 @@ public class Asteroids {
         // System.out.println(lives);
 
         // }
+        // if(AsteroidHit() = true){
+
+        // }
+        
+
 
     }
+    public float getAsteroidX(){
+        return asteroidX;
+    }
+    public float getAsteroidY(){
+        return asteroidY;
+    }
+    public void dissapear(){
+       asteroidSize= 0;
+
+
+    }
+    
+
+
+
+    
+    
+    
 
 }

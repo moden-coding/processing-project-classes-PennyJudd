@@ -20,13 +20,21 @@ public class Bullets {
        
         bulletX = bulletX + (bulletX-400); 
         bulletY = bulletY + (bulletY -250);
-        
+        // canvas.AsteroidHit(bulletX, bulletY, canvas);
 
        
     
     }
-    public void move(){
-
+    public float getBulletX(){
+        return bulletX;
     }
+    public float getBulletY(){
+        return bulletY;
+    }
+    // public float AsteroidHit(float asteroidX, float asteroidY, PApplet a){
+    //    return  (canvas.dist(asteroidX, asteroidY, bulletX, bulletY));
+    // }
+    
+   
     
 }
