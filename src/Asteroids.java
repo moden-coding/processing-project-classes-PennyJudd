@@ -3,27 +3,29 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class Asteroids {
-    
-    private float asteroidX;
-    private float asteroidY;
+
+    private float asteroidX = 300;
+    private float asteroidY = 300;
     private int asteroidSize;
     private PApplet canvas;
     private float xSpeed;
     private float ySpeed;
     private boolean movement = false;
+    private int smallDirection;
 
     public Asteroids(int size, float Astx, float Asty, PApplet c) {
         asteroidX = Astx;
         asteroidY = Asty;
         canvas = c;
-        xSpeed = canvas.random(-5, 5);
-        ySpeed = canvas.random(-3, 2);
+        xSpeed = canvas.random(-3, 3);
+        ySpeed = canvas.random(-2, 2);
 
         asteroidSize = size;
+
     }
 
     public void asteroidDisplay() {
-        
+
         canvas.stroke(255);
 
         canvas.fill(0);
@@ -51,9 +53,6 @@ public class Asteroids {
             asteroidX = asteroidX + xSpeed;
             asteroidY = asteroidY + ySpeed;
         }
-        
-        
-      
 
     }
 
@@ -61,20 +60,23 @@ public class Asteroids {
 
     // }
 
-    
+    // public void lives(Ship ship);
+
     public void lives(int life) {
         float shipx = 400;
         float shipy = 250;
-       
+
         float dist = (canvas.dist(asteroidX, asteroidY, shipx, shipy));
+        // while(life >= 0){
+        // System.out.println(dist);
+
         if ((int) dist < 35) {
-            life = life -1;
+            life = life - 1;
             asteroidSize = 0;
-            System.out.println(life);
+            // System.out.println(life);
 
         }
-        
-        
+        // }
 
         // System.out.println(canvas.dist(asteroidX,asteroidY,shipx,shipy));
         // if(canvas.dist(asteroidX,asteroidY,shipx,shipy) < (10 + 50)){
@@ -86,27 +88,45 @@ public class Asteroids {
         // if(AsteroidHit() = true){
 
         // }
-        
-
 
     }
-    public float getAsteroidX(){
+
+    public float getAsteroidX() {
         return asteroidX;
     }
-    public float getAsteroidY(){
+
+    public float getAsteroidY() {
         return asteroidY;
     }
-    public void dissapear(){
-       asteroidSize= 0;
 
+    public void dissapear() {
+        asteroidSize = 0;
 
     }
-    
 
+    public void smallAsteroid() {
+        
 
+      
+          
 
-    
-    
-    
+            smallDirection = (int) canvas.random(1, 3);
+            if (smallDirection == 1) {
+                xSpeed = -xSpeed;
+
+            }
+            if (smallDirection == 2) {
+
+                ySpeed = -ySpeed;
+            }
+           
+
+        
+        if (movement == true) {
+            asteroidX = asteroidX + xSpeed;
+            asteroidY = asteroidY + ySpeed;
+        }
+
+    }
 
 }

@@ -1,8 +1,8 @@
 import processing.core.PApplet;
 
 public class Bullets {
-    private float bulletX;
-    private float bulletY;
+    private float bulletX = 800;
+    private float bulletY = 500;
     private int bulletSize;
      private PApplet canvas;
 
@@ -25,15 +25,13 @@ public class Bullets {
        
     
     }
+    
     public float getBulletX(){
         return bulletX;
     }
     public float getBulletY(){
         return bulletY;
     }
-    // public float AsteroidHit(float asteroidX, float asteroidY, PApplet a){
-    //    return  (canvas.dist(asteroidX, asteroidY, bulletX, bulletY));
-    // }
     
    
     
