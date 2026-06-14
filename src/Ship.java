@@ -22,7 +22,7 @@ public void shipmaker(){
         
         canvas.circle(400, 250, size);
 
-        canvas.stroke(0, 0, 255);
+        canvas.stroke(0,0,255);
 
         canvas.line(400, 250, 400 +X, 250 +Y);
        
